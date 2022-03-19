@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $total_noticias = Nota::select(DB::raw('categoria, count(id) as total'))
-        ->where('users_id',Auth::id())
+        ->where('user_id',Auth::id())
         ->orderBy('total', 'desc')
         ->groupBy('categoria')
         ->get();
